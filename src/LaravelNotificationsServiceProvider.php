@@ -69,6 +69,6 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
      */
     private function registerMiddleware()
     {
-        $this->app['router']->middleware('role_mnara', $this->packageNamespace.'\Middleware\LaravelNotificationsMiddleware');
+        $this->app['router']->middleware('laravel_notifications', $this->packageNamespace.'\Middleware\LaravelNotificationsMiddleware');
     }
 }
