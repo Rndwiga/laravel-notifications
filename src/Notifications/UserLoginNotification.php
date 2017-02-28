@@ -6,19 +6,24 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-
+use Carbon\Carbon;
+/*
+* This notification class sends emails to a user whenever they login.
+* Output: time, ip
+*/
 class UserLoginNotification extends Notification
 {
     use Queueable;
+    public $ip;
 
     /**
      * Create a new notification instance.
-     *
+     * @param   $ip;
      * @return void
      */
-    public function __construct()
+    public function __construct($ip)
     {
-        //
+        $this->ip = $ip;
     }
 
     /**
@@ -41,9 +46,8 @@ class UserLoginNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('New Login Detected')
+            ->line('You have logged into your account at: ' . Carbon::now() . ' from IP: ' . $this->ip);
     }
 
     /**
