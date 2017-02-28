@@ -6,6 +6,29 @@ use Illuminate\Http\Request;
 
 class LaravelNotificationsController extends Controller
 {
+
+    /**
+     * Create a new helper instance.
+     *
+     * @param Guard $auth
+     * @param LaravelNotificationsHelper $laravelRegistrationHelper
+     */
+    public function __construct(LaravelNotificationsHelper $laravelNotificationsHelper)
+    {
+        $this->auth = $auth;
+        $this->laravelNotificationsHelper = $laravelNotificationsHelper;
+        $this->user = config('laravel_notifications.options.model')::find(Auth::user()->id);
+    }
+
+    public function activateUser($token)
+    {
+        if ($user = $this->userActivationLibrary->activateUser($token)) {
+            auth()->login($user);
+            return redirect($this->redirectPath());
+        }
+        abort(404);
+    }
+
     /**
      * Display a listing of the resource.
      *

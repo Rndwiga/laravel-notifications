@@ -14,7 +14,7 @@ use Illuminate\Routing\Router;
  *
  * @author: Rndwiga
  */
-class LaravelNotificationServiceProvider extends ServiceProvider {
+class LaravelNotificationsServiceProvider extends ServiceProvider {
     /**
      * Indicates of loading of the provider is deferred.
      *

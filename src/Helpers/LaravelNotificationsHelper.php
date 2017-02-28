@@ -15,7 +15,7 @@ use Tyondo\LaravelNotifications\Notifications\ConfirmEmailNotification;
 use App\User;
 use Carbon\Carbon;
 
-class LaravelRegistrationHelper
+class LaravelNotificationsHelper
 {
     protected $db; //activatin
     protected $table = 'user_activations';

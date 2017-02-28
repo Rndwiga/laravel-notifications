@@ -6,11 +6,11 @@ namespace Tyondo\LaravelNotifications\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 use Notification;
-use Tyondo\RegistrationConfirmation\Notifications\ConfirmEmailNotification;
-use Tyondo\RegistrationConfirmation\LaravelRegistrationHelper;
+use Tyondo\LaravelNotifications\Notifications\ConfirmEmailNotification;
+use Tyondo\LaravelNotifications\Helpers\LaravelNotificationsHelper;
 use Illuminate\Support\Facades\Auth;
 
-class UserHasPermission
+class LaravelNotificationsMiddleware
 {
     /**
      * @var Illuminate\Contracts\Auth\Guard
@@ -22,7 +22,7 @@ class UserHasPermission
      * Create a new UserHasPermission instance.
      *
      * @param Guard $auth
-     * @param LaravelRegistrationHelper $laravelRegistrationHelper
+     * @param mixed
      */
     public function __construct(Guard $auth, LaravelRegistrationHelper $laravelNotificationsHelper)
     {
