@@ -4,10 +4,9 @@
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\AliasLoader;
-use Illuminate\Support\Facades\Blade;
+use Illuminate\Routing\Router;
 //use Illuminate\Support\Facades\Schema;
 //use Illuminate\Support\Facades\Config;
-use Illuminate\Routing\Router;
 
 /**
  * A Laravel 5.3 user package
@@ -34,7 +33,7 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
      * @param mixed
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
 
         $router->group(
