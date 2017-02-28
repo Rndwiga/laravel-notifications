@@ -13,11 +13,15 @@ class CreateUserActivationsTable extends Migration
      */
     public function up()
     {
-      Schema::create('user_activations', function (Blueprint $table) {
-      $table->integer('user_id')->unsigned();
-      $table->string('token')->index();
-      $table->timestamps();
-  });
+          Schema::create('user_activations', function (Blueprint $table) {
+              $table->integer('user_id')->unsigned();
+              $table->string('token')->index();
+              $table->timestamps();
+         });
+        //add activation column check to users table
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('activated')->default(false)->index();
+        });
     }
 
     /**
@@ -28,5 +32,8 @@ class CreateUserActivationsTable extends Migration
     public function down()
     {
         Schema::drop('user_activations');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('activated');
+        });
     }
 }
