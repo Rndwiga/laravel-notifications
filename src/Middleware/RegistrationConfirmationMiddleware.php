@@ -1,6 +1,6 @@
 <?php
 
-namespace Tyondo\RegistrationConfirmation\Middleware;
+namespace Tyondo\LaravelNotifications\Middleware;
 
 
 use Closure;

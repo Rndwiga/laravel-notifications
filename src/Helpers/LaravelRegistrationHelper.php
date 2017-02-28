@@ -6,12 +6,12 @@
  * Time: 10:34 PM
  */
 
-namespace Tyondo\RegistrationConfirmation;
+namespace Tyondo\LaravelNotifications\Helpers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Notifications\newUserLogin;
-use Tyondo\RegistrationConfirmation\Notifications\ConfirmEmailNotification;
+use Tyondo\LaravelNotifications\Notifications\ConfirmEmailNotification;
 use App\User;
 use Carbon\Carbon;
 

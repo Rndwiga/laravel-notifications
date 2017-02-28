@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Tyondo\LaravelNotifications\Controllers;
 
 use Illuminate\Http\Request;
 

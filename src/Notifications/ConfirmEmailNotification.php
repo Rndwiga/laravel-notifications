@@ -1,6 +1,6 @@
 <?php
 
-namespace Tyondo\RegistrationConfirmation\Notifications;
+namespace Tyondo\LaravelNotifications\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;

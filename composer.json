@@ -1,7 +1,7 @@
 {
-	"name": "tyondo/laravel-registration-confirmation",
+	"name": "tyondo/laravel-notifications",
 	"type": "package",
-    "description": "User registration confirmation via email for Laravel 5.3 and 5.4.",
+    "description": "User notifications via email for Laravel 5.3 and 5.4.",
     "keywords": ["authorization", "permissions",  "validation", "admin", "laravel", "email", "confirmation"],
     "homepage": "https://github.com/Rndwiga/laravel-registration-confirmation",
     "authors": [
@@ -19,7 +19,7 @@
     },
     "autoload": {
        "psr-4": {
-		 "Tyondo\\RegistrationConfirmation\\": "src/"
+		 "Tyondo\\LaravelNotifications\\": "src/"
         }
     },
     "license": "MIT",

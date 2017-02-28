@@ -1,6 +1,6 @@
 <?php
 
-namespace Tyondo\RegistrationConfirmation\Listeners;
+namespace Tyondo\LaravelNotifications\Listeners;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;

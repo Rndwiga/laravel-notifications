@@ -1,4 +1,4 @@
-<?php namespace Tyondo\RegistrationConfirmation;
+<?php namespace Tyondo\LaravelNotifications;
 
 
 use Illuminate\Support\ServiceProvider;
@@ -14,7 +14,7 @@ use Illuminate\Routing\Router;
  *
  * @author: Rndwiga
  */
-class LaravelRegistrationConfirmationProvider extends ServiceProvider {
+class LaravelNotificationServiceProvider extends ServiceProvider {
     /**
      * Indicates of loading of the provider is deferred.
      *
