@@ -38,6 +38,10 @@ class LaravelNotificationsHelper
         //$userToken = User::find($user->id);
         $user->notify(new userAccountActivationNotification($userToken));
     }
+    public function newLogin($ip, $user)
+    {
+        $user->notify(new newUserLogin($ip));
+    }
     /**
      * sends activation code to users upon registration
      *

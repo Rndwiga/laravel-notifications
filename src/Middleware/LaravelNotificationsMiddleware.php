@@ -42,7 +42,6 @@ class LaravelNotificationsMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::check()) {
-
             if (!$this->user->activated) {
                 $this->laravelNotificationsHelper->sendActivationMail($this->user);
                 auth()->logout();
@@ -52,9 +51,8 @@ class LaravelNotificationsMiddleware
                 auth()->logout();
                 return redirect($this->redirectPath());
             }
-            $this->newLogin($request->ip(), $this->user);
+            $this->laravelNotificationsHelper->newLogin($request->ip(), $this->user);
             return back();
-
         }
 
         return $next($request);
