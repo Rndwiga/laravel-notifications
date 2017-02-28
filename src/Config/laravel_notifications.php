@@ -9,7 +9,8 @@ return [
     |
     */
 
-    'confirmation' => [
+    'options' => [
         'configuration'    => true,
+        'model'    => Tyondo\Mnara\Models\User::class,
     ]
 ];

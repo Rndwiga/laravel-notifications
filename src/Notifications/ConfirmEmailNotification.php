@@ -10,15 +10,16 @@ use Illuminate\Notifications\Messages\MailMessage;
 class ConfirmEmailNotification extends Notification
 {
     use Queueable;
+    public $token;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -40,10 +41,13 @@ class ConfirmEmailNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $link = route('user.activate', $this->token);
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('Activate your Account')
+            ->line('Welcome to ' . config('app.name'))
+            //->action('Notification Action', 'https://laravel.com')
+            ->action('Activation Link', $link)
+            ->line('We hope you will have a good experience');
     }
 
     /**
