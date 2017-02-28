@@ -26,7 +26,8 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
      * your package namespace.
      *
      */
-    protected $packageName = 'laravel_registration_confirmation';
+    protected $packageName = 'laravel_notifications';
+    protected $packageNamespace = 'Tyondo\LaravelNotifications';
 
     /**
      * Bootstrap the application services.
@@ -68,6 +69,6 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
      */
     private function registerMiddleware()
     {
-        $this->app['router']->middleware('role_mnara', 'Tyondo\RegistrationConfirmation\Middleware\RegistrationConfirmationMiddleware');
+        $this->app['router']->middleware('role_mnara', $this->packageNamespace.'\Middleware\RegistrationConfirmationMiddleware');
     }
 }
