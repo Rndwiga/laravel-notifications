@@ -10,19 +10,24 @@ namespace Tyondo\LaravelNotifications\Helpers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Notifications\newUserLogin;
+use Tyondo\LaravelNotifications\Notifications\UserLoginNotification;
 use Tyondo\LaravelNotifications\Notifications\ConfirmEmailNotification;
-use App\User;
 use Carbon\Carbon;
 
 class LaravelNotificationsHelper
 {
-    protected $db; //activatin
-    protected $table = 'user_activations';
-    protected $resendAfter = 24;
+    protected $db;
+    protected $table;
+    protected $resendAfter;
     /*
       Code for sending email Activation
     */
+    public function __construct()
+    {
+        $this->table = config('laravel_notifications.options.user_activations_table');
+        $this->resendAfter = config('laravel_notifications.options.resend_after');
+    }
+
     /**
      * sends activation code to users upon registration
      *
@@ -36,11 +41,11 @@ class LaravelNotificationsHelper
         }
         $userToken = $this->createActivation($user);
         //$userToken = User::find($user->id);
-        $user->notify(new userAccountActivationNotification($userToken));
+        $user->notify(new ConfirmEmailNotification($userToken));
     }
     public function newLogin($ip, $user)
     {
-        $user->notify(new newUserLogin($ip));
+        $user->notify(new UserLoginNotification($ip));
     }
     /**
      * sends activation code to users upon registration

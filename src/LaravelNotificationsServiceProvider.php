@@ -61,7 +61,7 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
     {
         // Publish your config files
         $this->publishes([
-            __DIR__.'/Config/laravel_registration_confirmation.php' => config_path($this->packageName.'.php')
+            __DIR__.'/Config/laravel_notifications.php' => config_path($this->packageName.'.php')
         ], 'config');
     }
     /**
@@ -69,6 +69,6 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
      */
     private function registerMiddleware()
     {
-        $this->app['router']->middleware('role_mnara', $this->packageNamespace.'\Middleware\RegistrationConfirmationMiddleware');
+        $this->app['router']->middleware('role_mnara', $this->packageNamespace.'\Middleware\LaravelNotificationsMiddleware');
     }
 }
