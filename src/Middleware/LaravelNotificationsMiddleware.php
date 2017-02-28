@@ -24,7 +24,7 @@ class LaravelNotificationsMiddleware
      * @param Guard $auth
      * @param mixed
      */
-    public function __construct(Guard $auth, LaravelRegistrationHelper $laravelNotificationsHelper)
+    public function __construct(Guard $auth, LaravelNotificationsHelper $laravelNotificationsHelper)
     {
         $this->auth = $auth;
         $this->laravelNotificationsHelper = $laravelNotificationsHelper;

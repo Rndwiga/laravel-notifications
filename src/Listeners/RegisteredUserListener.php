@@ -5,17 +5,19 @@ namespace Tyondo\LaravelNotifications\Listeners;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Tyondo\LaravelNotifications\Helpers\LaravelNotificationsHelper;
+use Illuminate\Support\Facades\Auth;
 
 class RegisteredUserListener
 {
     /**
      * Create the event listener.
+     * @param mixed
      *
-     * @return void
      */
-    public function __construct()
+    public function __construct(LaravelNotificationsHelper $laravelNotificationsHelper)
     {
-        //
+        $this->laravelNotificationsHelper = $laravelNotificationsHelper;
     }
 
     /**
@@ -26,6 +28,7 @@ class RegisteredUserListener
      */
     public function handle(Illuminate\Auth\Events\Registered $event)
     {
-        //
+        Auth::logout();
+        return redirect('/login')->with('activationStatus', true);
     }
 }
