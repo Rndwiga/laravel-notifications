@@ -36,6 +36,16 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
+
+        $router->group(
+            [
+                'prefix' => null,
+                'namespace' => 'Tyondo\\LaravelNotifications\\Controllers',
+            ], function(){
+            $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
+        }
+        );
+
         // Merge config files
         $this->mergeConfigFrom(__DIR__.'/Config/laravel_registration_confirmation.php', $this->packageName);
 		// Register Views
