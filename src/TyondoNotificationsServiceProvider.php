@@ -43,6 +43,7 @@ class TyondoNotificationsServiceProvider extends ServiceProvider {
         }
         );
 
+
         // Merge config files
         $this->mergeConfigFrom(__DIR__.'/Config/tyondo_notifications.php', $this->packageName);
 		// Register Views
@@ -83,6 +84,10 @@ class TyondoNotificationsServiceProvider extends ServiceProvider {
      */
     private function registerMiddleware()
     {
-        $this->app['router']->middleware('tyondo_notifications', $this->packageNamespace.'\Middleware\LaravelNotificationsMiddleware');
+        if (method_exists($this->app['router'], 'aliasMiddleware')) {
+            $this->app['router']->aliasMiddleware('tyondo_notifications', \Tyondo\Notifications\Middleware\TyondoNotificationsMiddleware::class);
+        } else {
+            $this->app['router']->middleware('tyondo_notifications', \Tyondo\Notifications\Middleware\TyondoNotificationsMiddleware::class);
+        }
     }
 }
