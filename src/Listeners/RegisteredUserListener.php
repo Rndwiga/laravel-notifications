@@ -1,11 +1,11 @@
 <?php
 
-namespace Tyondo\LaravelNotifications\Listeners;
+namespace Tyondo\Notifications\Listeners;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Tyondo\LaravelNotifications\Helpers\LaravelNotificationsHelper;
+use Tyondo\Notifications\Helpers\TyondoNotificationsHelper;
 use Illuminate\Support\Facades\Auth;
 
 class RegisteredUserListener
@@ -15,7 +15,7 @@ class RegisteredUserListener
      * @param mixed
      *
      */
-    public function __construct(LaravelNotificationsHelper $laravelNotificationsHelper)
+    public function __construct(TyondoNotificationsHelper $laravelNotificationsHelper)
     {
         $this->laravelNotificationsHelper = $laravelNotificationsHelper;
     }

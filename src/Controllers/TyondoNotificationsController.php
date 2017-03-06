@@ -1,28 +1,26 @@
 <?php
 
-namespace Tyondo\LaravelNotifications\Controllers;
+namespace Tyondo\Notifications\Controllers;
 
 use Illuminate\Http\Request;
-use Tyondo\LaravelNotifications\Helpers\LaravelNotificationsHelper;
+use Tyondo\Notifications\Helpers\TyondoNotificationsHelper;
 
-class LaravelNotificationsController extends Controller
+class TyondoNotificationsController extends Controller
 {
-
+    private $tyondoNotificationsHelper;
     /**
      * Create a new helper instance.
      *
      * @param mixed
      */
-    public function __construct(LaravelNotificationsHelper $laravelNotificationsHelper)
+    public function __construct(TyondoNotificationsHelper $tyondoNotificationsHelper)
     {
-        $this->auth = $auth;
-        $this->laravelNotificationsHelper = $laravelNotificationsHelper;
-        $this->user = config('laravel_notifications.options.model')::find(Auth::user()->id);
+        $this->tyondoNotificationsHelper = $tyondoNotificationsHelper;
     }
 
     public function activateUser($token)
     {
-        if ($user = $this->laravelNotificationsHelper->activateUser($token)) {
+        if ($user = $this->tyondoNotificationsHelper->activateUser($token)) {
             auth()->login($user);
             return redirect($this->redirectPath());
         }

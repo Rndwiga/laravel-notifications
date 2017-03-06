@@ -6,15 +6,15 @@
  * Time: 10:34 PM
  */
 
-namespace Tyondo\LaravelNotifications\Helpers;
+namespace Tyondo\Notifications\Helpers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Tyondo\LaravelNotifications\Notifications\UserLoginNotification;
-use Tyondo\LaravelNotifications\Notifications\ConfirmEmailNotification;
+use Tyondo\Notifications\Notifications\UserLoginNotification;
+use Tyondo\Notifications\Notifications\ConfirmEmailNotification;
 use Carbon\Carbon;
 
-class LaravelNotificationsHelper
+class TyondoNotificationsHelper
 {
     protected $db;
     protected $table;
@@ -24,8 +24,8 @@ class LaravelNotificationsHelper
     */
     public function __construct()
     {
-        $this->table = config('laravel_notifications.options.user_activations_table');
-        $this->resendAfter = config('laravel_notifications.options.resend_after');
+        $this->table = config('tyondo_notifications.options.user_activations_table');
+        $this->resendAfter = config('tyondo_notifications.options.resend_after');
     }
 
     /**
@@ -81,6 +81,7 @@ class LaravelNotificationsHelper
     */
     public function getActivation($user)
     {
+
         return DB::table($this->table)->where('user_id', $user->id)->first();
     }
     public function getActivationByToken($token)

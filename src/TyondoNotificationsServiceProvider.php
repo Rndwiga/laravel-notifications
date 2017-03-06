@@ -1,19 +1,18 @@
-<?php namespace Tyondo\LaravelNotifications;
+<?php namespace Tyondo\Notifications;
 
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
-//use Illuminate\Support\Facades\Schema;
 //use Illuminate\Support\Facades\Config;
-
+use Illuminate\Support\Facades\Schema;
 /**
  * A Laravel 5.3 user package
  *
  * @author: Rndwiga
  */
-class LaravelNotificationsServiceProvider extends ServiceProvider {
+class TyondoNotificationsServiceProvider extends ServiceProvider {
     /**
      * Indicates of loading of the provider is deferred.
      *
@@ -23,10 +22,9 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
     /**
      * This will be used to register config & view in 
      * your package namespace.
-     *
      */
-    protected $packageName = 'laravel_notifications';
-    protected $packageNamespace = 'Tyondo\LaravelNotifications';
+    protected $packageName = 'tyondo_notifications';
+    protected $packageNamespace = 'Tyondo\Notifications';
 
     /**
      * Bootstrap the application services.
@@ -35,20 +33,22 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
      */
     public function boot(Router $router)
     {
-
+        Schema::defaultStringLength(191);
         $router->group(
             [
                 'prefix' => null,
-                'namespace' => 'Tyondo\\LaravelNotifications\\Controllers',
+                'namespace' => 'Tyondo\\Notifications\\Controllers',
             ], function(){
             $this->loadRoutesFrom(__DIR__.'/Routes/web.php');
         }
         );
 
         // Merge config files
-        $this->mergeConfigFrom(__DIR__.'/Config/laravel_registration_confirmation.php', $this->packageName);
+        $this->mergeConfigFrom(__DIR__.'/Config/tyondo_notifications.php', $this->packageName);
 		// Register Views
         //$this->loadViewsFrom(__DIR__.'/views', $this->packageName);
+
+
     }
 
     /**
@@ -59,8 +59,9 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
     public function register()
     {
         //registering package service providers and aliases
-        $this->registerMiddleware();
         $this->registerResources();
+        $this->registerMiddleware();
+
 
     }
     /**
@@ -70,14 +71,18 @@ class LaravelNotificationsServiceProvider extends ServiceProvider {
     {
         // Publish your config files
         $this->publishes([
-            __DIR__.'/Config/laravel_notifications.php' => config_path($this->packageName.'.php')
+            __DIR__.'/Config/tyondo_notifications.php' => config_path($this->packageName.'.php')
         ], 'config');
+        // Publish your config files
+        $this->publishes([
+            __DIR__.'/Database/Migrations/' => base_path('database/migrations')
+        ], 'migrations');
     }
     /**
      * @return void
      */
     private function registerMiddleware()
     {
-        $this->app['router']->middleware('laravel_notifications', $this->packageNamespace.'\Middleware\LaravelNotificationsMiddleware');
+        $this->app['router']->middleware('tyondo_notifications', $this->packageNamespace.'\Middleware\LaravelNotificationsMiddleware');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tyondo\LaravelNotifications\Notifications;
+namespace Tyondo\Notifications\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
