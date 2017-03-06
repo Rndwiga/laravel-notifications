@@ -2,10 +2,7 @@
 
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
-//use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 /**
  * A Laravel 5.3 user package

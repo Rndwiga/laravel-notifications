@@ -19,7 +19,7 @@
     },
     "autoload": {
        "psr-4": {
-		 "Tyondo\\LaravelNotifications\\": "src/"
+		 "Tyondo\\Notifications\\": "src/"
         }
     },
     "license": "MIT",
